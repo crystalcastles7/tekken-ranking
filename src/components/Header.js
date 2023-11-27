@@ -110,7 +110,7 @@ function Header() {
         playerName1: "UTQ",
         playerName2: "MishimAbay",
         date: "27.11.2023",
-        hour: "19.45",
+        hour: "19:45",
         flag1: "https://cdn.countryflags.com/thumbs/germany/flag-400.png",
         flag2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AI5XtKTkAGJJfcLfzdH3tHzGd6CeVAAAA/klEQVR4nO3QSQ0AIAADs",
         characterId1: 36,
