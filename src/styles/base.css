@@ -1,0 +1,55 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.site-container {
+  margin: 0 auto;
+}
+
+/* scrollbar styling start */
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 0.27em;
+  height: 0.5rem;
+}
+
+/* Style the track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background-color: #1e1e1e;
+}
+
+/* Style the thumb (the moving part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background-color: #456;
+  border-radius: 10px;
+}
+
+/* Style the thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9ab;
+}
+
+/* scrollbar styling end */
+@-webkit-keyframes placeholderAnimation {
+  0% {
+    background-color: #111;
+  }
+  50% {
+    background-color: #1c1c1c;
+  }
+  100% {
+    background-color: #111;
+  }
+}
+@keyframes placeholderAnimation {
+  0% {
+    background-color: #111;
+  }
+  50% {
+    background-color: #1c1c1c;
+  }
+  100% {
+    background-color: #111;
+  }
+}
+/*# sourceMappingURL=base.css.map */

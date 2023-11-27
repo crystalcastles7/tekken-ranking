@@ -1,0 +1,41 @@
+table {
+    color: #eee;
+    margin: 100px auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    border-spacing: 0;
+  
+    thead {
+      font-size: 22px;
+  
+      th {
+        padding: 21px 25px;
+      }
+    }
+  
+    tr {
+  
+      td {
+        padding: 10px 25px 6px;
+      }
+
+      td.main-char-container {
+        img {
+            width: 32px;
+            padding-bottom: 6px;
+        }
+      }
+    }
+  
+    tr:nth-child(even) {
+      // background-color: #1a2a3b;
+      background-color: rgba(26, 42, 59, 0.9);
+    }
+  
+    tr:nth-child(odd) {
+      // background-color: #152332;
+      background-color: rgba(21, 35, 50, 0.9);
+    }
+  
+  }
+  

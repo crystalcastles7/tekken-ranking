@@ -1,0 +1,53 @@
+@import './base';
+@import './components/header';
+@import './components/backdrop';
+@import './components/calendar';
+@import './components/leaderboard';
+@import './components/notFound';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
+
+
+body {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+.all-content-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: relative;
+  min-height: 5000px;
+
+  background-image: url("../../public/images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 1;
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+
+  #backdrop-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    opacity: .1;
+  }
+}
+
+
+
+

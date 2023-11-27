@@ -1,0 +1,159 @@
+.query-calendar-container {
+  width: 100%;
+  margin: 75px auto 0;
+  text-align: center;
+  #query-calendar {
+    margin: 40px;
+    width: 300px;
+    padding: 14px 18px;
+    border-radius: 20px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+  }
+
+}
+
+
+
+.fixture {
+  display: inline-block;
+  margin: 0px auto;
+  background-color: #152332;
+  width: 900px;
+  opacity: 1;
+  z-index: 22;
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+
+
+  .match-group-container {
+
+    .match {
+      cursor: default;
+      padding: 16px 0 32px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .date-container {
+        font-size: 11px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #eee;
+        color: rgb(207, 207, 207);
+      }
+
+      .vs {
+        width: 110px;
+        margin-bottom: -17px;
+      }
+
+      .vs-score-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        row-gap: 20px;
+        margin-bottom: -16px;
+
+        .watch-container {
+          font-size: 13px;
+          color: #ccc;
+
+          span {
+            cursor: pointer;
+          }
+        }
+      }
+
+
+      .score-container {
+        display: flex;
+        flex-direction: row;
+        column-gap: 9px;
+        justify-content: center;
+        width: 110px;
+        margin-bottom: -17px;
+      }
+
+
+
+      .player-container {
+        width: 250px;
+        position: relative;
+
+        .char-img {
+          height: 50px;
+          margin: 0 16px -16px;
+        }
+
+        .winner {
+          color: rgb(133, 245, 150);
+        }
+        .loser {
+          opacity: .18;
+        }
+
+      }
+
+      .p1 {
+        text-align: right;
+      }
+
+      .p2 {
+        text-align: left;
+      }
+
+      .flag {
+        width: auto;
+        height: 14px;
+        margin: 0 7px;
+        margin-top: 1px;
+        display: none;
+      }
+    }
+
+    .match:nth-child(even) {
+      background-color: #1a2a3b;
+    }
+
+    .youtube-container {
+      width: 80%;
+      margin: 0 auto;
+      height: 0;
+      overflow: hidden;
+      transition: .25s ease-in-out;
+      border-radius: 10px;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+      }
+
+    }
+
+    .youtube-container--active {
+      height: 320px;
+    }
+
+
+  }
+
+
+
+
+
+
+}
