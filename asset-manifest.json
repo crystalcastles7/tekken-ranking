@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/tekken-ranking/static/css/main.b066b1a6.css",
-    "main.js": "/tekken-ranking/static/js/main.a7b806d3.js",
+    "main.js": "/tekken-ranking/static/js/main.856305db.js",
     "static/media/background.jpg": "/tekken-ranking/static/media/background.a688a3346a81aaf0b2f9.jpg",
     "index.html": "/tekken-ranking/index.html",
     "main.b066b1a6.css.map": "/tekken-ranking/static/css/main.b066b1a6.css.map",
-    "main.a7b806d3.js.map": "/tekken-ranking/static/js/main.a7b806d3.js.map"
+    "main.856305db.js.map": "/tekken-ranking/static/js/main.856305db.js.map"
   },
   "entrypoints": [
     "static/css/main.b066b1a6.css",
-    "static/js/main.a7b806d3.js"
+    "static/js/main.856305db.js"
   ]
 }
