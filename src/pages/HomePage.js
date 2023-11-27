@@ -67,7 +67,7 @@ function HomePage(props) {
         </thead>
         <tbody>
 
-          {players && players.players.length > 0 && players.players.map(((player, index) => {
+          {players && players.players && players.players.length > 0 && players.players.map(((player, index) => {
             return (
               <tr key={index}>
                 <td>#{index + 1}</td>
