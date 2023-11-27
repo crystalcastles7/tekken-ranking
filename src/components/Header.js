@@ -19,8 +19,8 @@ function Header() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('fetched data: ' + data);
-        if (data) dispatch(setPlayersList(data.playersList));
+        console.log('fetched data: ',  data);
+        if (data) dispatch(setPlayersList(data));
       })
       .catch(error => {
         console.error('Error:', error);
