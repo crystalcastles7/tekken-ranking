@@ -21,7 +21,7 @@ function HomePage(props) {
 
     const fetchUrl = `${process.env.REACT_APP_API_URL}/add-player`
     console.log('Fetching: ' + fetchUrl);
-    
+
     fetch(fetchUrl, {
       method: 'POST',
       headers: {
@@ -49,7 +49,7 @@ function HomePage(props) {
     <div>
       {isAdmin &&
         <div className="add-btn">
-          <button onClick={addNewPlayer}>Add new player!</button>
+          <button onClick={addNewPlayer}>Add new player2 !</button>
         </div>
       }
 
