@@ -61,7 +61,7 @@ function Calendar(props) {
                                     {match.score1 && <span className={`player-name ${match.score1 > match.score2 ? 'winner' : 'loser'}`} >{match.playerName1}</span>}
                                     {!match.score1 && <span className='player-name'>{match.playerName1}</span>}
 
-                                    <img alt="" className="char-img" src={"../../tekken-league/images/characters/" + match.characterId1 + ".png"} />
+                                    <img alt="" className="char-img" src={"../../tekken-ranking/images/characters/" + match.characterId1 + ".png"} />
                                 </div>
 
                                 {match.score1 && match.score2 &&
@@ -82,7 +82,7 @@ function Calendar(props) {
                                 }
 
                                 <div className="player-container p2">
-                                    <img className="char-img" src={"../../tekken-league/images/characters/" + match.characterId2 + ".png"} />
+                                    <img className="char-img" src={"../../tekken-ranking/images/characters/" + match.characterId2 + ".png"} />
                                     {match.score1 && <span className={`player-name ${match.score1 > match.score2 ? 'loser' : 'winner'}`}>{match.playerName2}</span>}
                                     {!match.score1 && <span className='player-name'>{match.playerName2}</span>}
                                     {/* <img src="" className="flag"></img> */}

@@ -9,7 +9,7 @@ function AppRouter() {
     <HashRouter>
       <Header />
       <div className="all-content-container">
-        <video id="backdrop-video" autoPlay muted loop src="../../tekken-league/videos/background-smoke.mp4"></video>
+        <video id="backdrop-video" autoPlay muted loop src="../../tekken-ranking/videos/background-smoke.mp4"></video>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/calendar" element={<Calendar />} />

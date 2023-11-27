@@ -30,7 +30,7 @@ function HomePage(props) {
               <td>{player.name}</td>
               <td>{player.win} - {player.lose}</td>
               <td className="main-char-container">
-                <img className="char-img" src={"../../tekken-league/images/characters/" + player.mainCharacterId + ".png"} />
+                <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
               </td>
               {/* <td>{player.rank}</td> */}
               <td>{player.lastPlayed}</td>

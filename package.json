@@ -1,6 +1,6 @@
 {
-  "homepage": "https://crystalcastles7.github.io/tekken-league/",
-  "name": "tekken7-league",
+  "homepage": "https://crystalcastles7.github.io/tekken-ranking/",
+  "name": "tekken-ranking",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
