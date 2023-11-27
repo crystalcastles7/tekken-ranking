@@ -49,7 +49,7 @@ function HomePage(props) {
     <div>
       {isAdmin &&
         <div className="add-btn">
-          <button onClick={addNewPlayer}>Add new player2 !</button>
+          <button onClick={addNewPlayer}>Add new player3 !</button>
         </div>
       }
 
