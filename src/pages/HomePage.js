@@ -44,6 +44,10 @@ function HomePage(props) {
       });
   }
 
+  const getClassText = (num) => {
+    return ["S+", "S", "A+", "A", "B", "C", "D", "E", "E", "E"][10-num]
+  }
+
   return (
 
     <div>
@@ -71,9 +75,9 @@ function HomePage(props) {
             return (
               <tr key={index}>
                 <td>#{index + 1}</td>
-                <td>{player.class}</td>
+                <td>{getClassText(player.classValue)}</td>
                 <td>{player.name}</td>
-                <td>{player.win} - {player.lose}</td>
+                <td>{player.winCount} - {player.loseCount}</td>
                 <td className="main-char-container">
                   <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                 </td>
