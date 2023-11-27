@@ -19,7 +19,10 @@ function HomePage(props) {
       playedCharaterIds: []
     }
 
-    fetch(`${process.env.REACT_APP_API_URL}/add-player`, {
+    const fetchUrl = `${process.env.REACT_APP_API_URL}/add-player`
+    console.log('Fetching: ' + fetchUrl);
+    
+    fetch(fetchUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
