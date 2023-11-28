@@ -7,7 +7,7 @@ const playersReducer = (state = initialState, action) => {
         case "SET_PLAYERS_LIST":
             return {
                 ...state,
-                players: action.payload,
+                players: action.payload.sort((a,b) => a.classValue < b.classValue ? 1 : -1),
             };
 
         default:

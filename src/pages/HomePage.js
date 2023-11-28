@@ -69,12 +69,12 @@ function HomePage(props) {
               <th>Record</th>
               <th>Character</th>
               {/* <th>Rank</th> */}
-              <th>Last Played</th>
+              {/* <th>Last Played</th> */}
             </tr>
           </thead>
           <tbody>
 
-            {players.players.map(((player, index) => {
+            {players.players.sort((a,b) => a.classValue < b.classValue ? 1 : -1).map(((player, index) => {
               return (
                 <tr key={index}>
                   <td>#{index + 1}</td>
@@ -85,7 +85,7 @@ function HomePage(props) {
                     <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                   </td>
                   {/* <td>{player.rank}</td> */}
-                  <td>{player.lastPlayed}</td>
+                  {/* <td>{player.lastPlayed}</td> */}
                 </tr>
               )
             }))

@@ -115,61 +115,6 @@ function Header() {
     fetchAndSetPlayers();
     fetchAndSetMatches();
 
-    /* matches 
-    const matchesList = [
-      {
-        playerName1: "crystalcastlesss",
-        playerName2: "Unsweetdream",
-        date: "26.11.2023",
-        hour: "17:30",
-        flag1: "https://cdn.countryflags.com/thumbs/germany/flag-400.png",
-        flag2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AI5XtKTkAGJJfcLfzdH3tHzGd6CeVAAAA/klEQVR4nO3QSQ0AIAADs",
-        characterId1: 42,
-        characterId2: 11,
-        score1: 10,
-        score2: 7,
-        youtube_id: "cgckFGVv194"
-      },
-      {
-        playerName1: "Dalzker",
-        playerName2: "ChaosWarrior",
-        date: "26.11.2023",
-        hour: "18:30",
-        flag1: "https://cdn.countryflags.com/thumbs/germany/flag-400.png",
-        flag2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AI5XtKTkAGJJfcLfzdH3tHzGd6CeVAAAA/klEQVR4nO3QSQ0AIAADs",
-        characterId1: 21,
-        characterId2: 5,
-        score1: 10,
-        score2: 2,
-        youtube_id: "lqOuJOa26RE"
-      },
-      {
-        playerName1: "UTQ",
-        playerName2: "MishimAbay",
-        date: "27.11.2023",
-        hour: "19:45",
-        flag1: "https://cdn.countryflags.com/thumbs/germany/flag-400.png",
-        flag2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AI5XtKTkAGJJfcLfzdH3tHzGd6CeVAAAA/klEQVR4nO3QSQ0AIAADs",
-        characterId1: 36,
-        characterId2: 26,
-        score1: 7,
-        score2: 10
-      },
-      {
-        playerName1: "Okumus",
-        playerName2: "ByTury",
-        date: "TBA",
-        hour: "????",
-        flag1: "https://cdn.countryflags.com/thumbs/germany/flag-400.png",
-        flag2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AI5XtKTkAGJJfcLfzdH3tHzGd6CeVAAAA/klEQVR4nO3QSQ0AIAADs",
-        characterId1: 45,
-        characterId2: 7
-      },
-    ]
-
-    dispatch(setMatchesList(matchesList.reverse()));
-    */
-
     let charactersList = [
       {
         character_name: "Akuma",

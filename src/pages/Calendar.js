@@ -157,6 +157,8 @@ function Calendar(props) {
                     let player_2_object = players.players.find(player => player._id === match.player_2_id)
                     return (
 
+                        player_1_object && player_2_object &&
+
                         (player_1_object.name.toLowerCase().includes(inputValue) || player_2_object.name.toLowerCase().includes(inputValue)) &&
 
                         <div className='match-group-container'>
@@ -236,7 +238,7 @@ function Calendar(props) {
                                     required
                                 >
                                     <option value="">Player</option>
-                                    {players && players.players.map((player) => (
+                                    {players && players.players.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1).map((player) => (
                                         <option key={player._id} value={player._id}>
                                             {player.name}
                                         </option>
@@ -255,7 +257,7 @@ function Calendar(props) {
                                     required
                                 >
                                     <option value="">Character</option>
-                                    {characters && characters.characters.map((character) => (
+                                    {characters && characters.characters.sort((a, b) => a.character_name.toLowerCase() > b.character_name.toLowerCase() ? 1 : -1).map((character) => (
                                         <option key={character.char_id} value={character.char_id}>
                                             {character.character_name}
                                         </option>
@@ -274,7 +276,7 @@ function Calendar(props) {
                                     required
                                 >
                                     <option value="">Player</option>
-                                    {players && players.players.map((player) => (
+                                    {players && players.players.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1).map((player) => (
                                         <option key={player._id} value={player._id}>
                                             {player.name}
                                         </option>
@@ -293,7 +295,7 @@ function Calendar(props) {
                                     required
                                 >
                                     <option value="">Character</option>
-                                    {characters && characters.characters.map((character) => (
+                                    {characters && characters.characters.sort((a, b) => a.character_name.toLowerCase() > b.character_name.toLowerCase() ? 1 : -1).map((character) => (
                                         <option key={character.char_id} value={character.char_id}>
                                             {character.character_name}
                                         </option>
