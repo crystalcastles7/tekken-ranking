@@ -1,16 +1,81 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setPlayersList } from '../actions/players';
 import { setMatchesList } from '../actions/matches';
+import { setAdmin } from '../actions/account';
 import { setCharactersList } from '../actions/characters';
 import { Link } from 'react-router-dom';
+
 function Header() {
+
+  const account = useSelector((state) => state.account);
+
+  useEffect(() => {
+    let authToken = localStorage.getItem("authToken")
+    if (authToken) {
+      const fetchUrl = `${process.env.REACT_APP_API_URL}/is-admin-token`
+      fetch(fetchUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ authToken })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.exists === true) {
+            dispatch(setAdmin(true));
+          } else {
+            // alert("Logged out because of outdated auth token.")
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  }, [])
+
+  const toggleLogin = () => {
+
+    if (account.isAdmin) {
+      localStorage.removeItem("authToken");
+      window.location.reload();
+      return false
+    }
+
+    let account_name = prompt("Username: ")
+    let account_pass = prompt("Password: ")
+
+    if (account_name.trim() === "" || account_pass.trim() === "") return false
+
+    const fetchUrl = `${process.env.REACT_APP_API_URL}/is-admin`
+    fetch(fetchUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ account_name, account_pass })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.exists === true) {
+          dispatch(setAdmin(true));
+          localStorage.setItem("authToken", data.authToken)
+          alert("Success! ")
+        } else {
+          alert("No")
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+  }
 
   const fetchAndSetPlayers = async () => {
 
     const fetchUrl = `${process.env.REACT_APP_API_URL}/get-all-players`
-    console.log('Fetching: ' + fetchUrl);
     fetch(fetchUrl, {
       method: 'POST',
       headers: {
@@ -19,8 +84,24 @@ function Header() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('fetched data: ',  data);
         if (data) dispatch(setPlayersList(data));
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+  const fetchAndSetMatches = async () => {
+    const fetchUrl = `${process.env.REACT_APP_API_URL}/get-all-matches`
+    fetch(fetchUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data) dispatch(setMatchesList(data));
       })
       .catch(error => {
         console.error('Error:', error);
@@ -32,8 +113,9 @@ function Header() {
   useEffect(() => {
 
     fetchAndSetPlayers();
+    fetchAndSetMatches();
 
-    /* matches */
+    /* matches 
     const matchesList = [
       {
         playerName1: "crystalcastlesss",
@@ -86,6 +168,7 @@ function Header() {
     ]
 
     dispatch(setMatchesList(matchesList.reverse()));
+    */
 
     let charactersList = [
       {
@@ -309,6 +392,14 @@ function Header() {
         <li>
           <Link to={"/calendar"}>CALENDAR</Link>
         </li>
+        <li>
+          <a onClick={toggleLogin} style={{ cursor: "pointer" }}>
+            {account.isAdmin === false && <span>LOGIN</span>}
+            {account.isAdmin === true && <span>LOGOUT</span>}
+          </a>
+        </li>
+
+
       </ul>
     </header>
   );

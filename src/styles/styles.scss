@@ -48,3 +48,73 @@ body {
   }
 }
 
+.component-container {
+  margin: 150px auto 0;
+  text-align: center;
+}
+
+
+.new-player-form-container {
+  padding: 10px 10px;
+  box-sizing: border-box;
+  width: 600px;
+  border-radius: 20px;
+  margin: 0 auto;
+
+  .btn-container {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+
+    button {
+      padding: 10px 20px;
+      border-radius: 12px;
+      background-color: rgba(21, 35, 50, 1);
+      outline: none;
+      border: none;
+      color: #9ac;
+      transition: .15s ease-in-out;
+    }
+    button:hover {
+      color: #fff;
+    }
+  }
+
+  .form-container {
+
+    background-color: rgba(26, 42, 59, 0.9);
+    height: 0;
+    transition: .25s ease-in-out;
+    overflow: hidden;
+    margin: 0px auto;
+
+    label {
+      color: #9ab;
+      padding: 4px 10px;
+      margin-bottom: 0;
+    }
+
+    select {
+      display: block;
+      margin: 0 auto;
+      padding: 6px 10px;
+      width: 200px;
+      border-radius: 8px;
+    }
+
+    input {
+      width: 200px;
+      margin: 0 auto 30px;
+      height: 32px;
+    }
+
+  }
+
+  .active {
+    transition: .25s ease-in-out;
+    height: 500px;
+  }
+
+
+}

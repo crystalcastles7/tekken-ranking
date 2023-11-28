@@ -11,23 +11,25 @@
 
 table {
   color: #eee;
-  margin: 150px auto;
+  margin: 20px auto;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 15px;
   border-spacing: 0;
-
+  padding: 20px;
+  margin-top: 180px;
+  
   thead {
     font-size: 22px;
 
     th {
-      padding: 21px 25px;
+      padding: 21px 36px;
     }
   }
 
   tr {
 
     td {
-      padding: 10px 25px 6px;
+      padding: 10px 36px 6px;
     }
 
     td.main-char-container {

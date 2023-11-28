@@ -1,53 +1,61 @@
 header {
-    margin: 0;
-    padding: 12px 20px 6px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    // background-color: #14181c;
-    z-index: 22123123;
-    position: relative;
-    background-color: #121c27;
+  margin: 0;
+  padding: 12px 20px 6px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  // background-color: #14181c;
+  z-index: 22123123;
+  position: relative;
+  background-color: #121c27;
 
-    .header-logo {
-      padding-bottom: 3px;
+  .header-logo {
+    padding-bottom: 3px;
 
-        img {
-          height: 40px;
-        }
+    img {
+      height: 40px;
     }
-    
-      ul {
-        margin: 0;
-        padding: 0 0 5px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        column-gap: 50px;
-      
-        li {
-          list-style: none;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: .1s ease-in-out;
+  }
 
-          a {
-            font-size: 13px;
-            text-decoration: none;
-            color: #9ab;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            padding: 4px 12px;
-            display: inline-block;
-            letter-spacing: 0px;
-          }
+  ul {
+    margin: 0;
+    padding: 0 0 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 50px;
 
-          a:hover {
-            color: #fff;
-          }
-        }
+    li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .1s ease-in-out;
+
+      a {
+        font-size: 13px;
+        text-decoration: none;
+        color: #9ab;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        padding: 4px 12px;
+        display: inline-block;
+        letter-spacing: 0px;
       }
+
+      a:hover {
+        color: #fff;
+      }
+
+      a span {
+        color: #9ab;
+      }
+
+      a span:hover {
+        color: #fff;
+      }
+    }
+  }
 }
 
 .page-container--movie-page header {
@@ -58,9 +66,11 @@ header {
     z-index: 3;
     color: #d8e0e8;
   }
+
   ul li a:hover {
     color: #fff;
   }
+
   img {
     opacity: 0;
   }

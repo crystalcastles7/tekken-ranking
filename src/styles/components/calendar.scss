@@ -2,6 +2,7 @@
   width: 100%;
   margin: 75px auto 0;
   text-align: center;
+
   #query-calendar {
     margin: 40px;
     width: 300px;
@@ -32,11 +33,12 @@
 
     .match {
       cursor: default;
-      padding: 16px 0 32px;
+      padding: 0;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px 0;
 
       .date-container {
         font-size: 11px;
@@ -50,13 +52,12 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        color: #eee;
         color: rgb(207, 207, 207);
       }
 
       .vs {
-        width: 110px;
-        margin-bottom: -17px;
+        width: 160px;
+        // margin-bottom: -17px;
       }
 
       .vs-score-container {
@@ -64,7 +65,9 @@
         justify-content: center;
         flex-direction: column;
         row-gap: 20px;
-        margin-bottom: -16px;
+        margin-bottom: -8px;
+        width: 160px;
+
 
         .watch-container {
           font-size: 13px;
@@ -82,7 +85,7 @@
         flex-direction: row;
         column-gap: 9px;
         justify-content: center;
-        width: 110px;
+        width: 100%;
         margin-bottom: -17px;
       }
 
@@ -91,15 +94,19 @@
       .player-container {
         width: 250px;
         position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        column-gap: 16px;
 
         .char-img {
           height: 50px;
-          margin: 0 16px -16px;
         }
 
         .winner {
           color: rgb(133, 245, 150);
         }
+
         .loser {
           opacity: .18;
         }
@@ -108,6 +115,7 @@
 
       .p1 {
         text-align: right;
+        justify-content: flex-end;
       }
 
       .p2 {
@@ -154,6 +162,74 @@
 
 
 
+
+
+}
+
+
+.new-set-form-container {
+  padding: 10px 10px;
+  box-sizing: border-box;
+  width: 600px;
+  border-radius: 20px;
+  margin: 0 auto;
+
+  .btn-container {
+    text-align: center;
+    display: block;
+    margin: 50px auto 40px;
+    height: 100%;
+
+    button {
+      padding: 10px 20px;
+      border-radius: 12px;
+      background-color: rgba(21, 35, 50, 1);
+      outline: none;
+      border: none;
+      color: #9ac;
+      transition: .15s ease-in-out;
+    }
+
+    button:hover {
+      color: #fff;
+    }
+  }
+
+  .form-container {
+
+    background-color: rgba(26, 42, 59, 0.9);
+    height: 0;
+    transition: .25s ease-in-out;
+    overflow: hidden;
+    margin: 0px auto;
+
+    label {
+      color: #9ab;
+      padding: 4px 10px;
+      margin-bottom: 0;
+      display: block;
+    }
+
+    select {
+      display: block;
+      margin: 0 auto 32px;
+      padding: 6px 10px;
+      width: 200px;
+      border-radius: 8px;
+    }
+
+    input {
+      width: 200px;
+      margin: 0 auto 30px;
+      height: 32px;
+    }
+
+  }
+
+  .active {
+    transition: .25s ease-in-out;
+    height: 950px;
+  }
 
 
 }

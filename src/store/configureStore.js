@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import playersReducer from '../reducers/players';
+import accountReducer from '../reducers/account';
 import matchesReducer from '../reducers/matches';
 import charactersReducer from '../reducers/characters';
 
@@ -8,7 +9,8 @@ export default () => {
         combineReducers({
             players: playersReducer,
             matches: matchesReducer,
-            characters: charactersReducer
+            characters: charactersReducer,
+            account: accountReducer
         }),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
