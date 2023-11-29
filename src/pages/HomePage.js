@@ -101,7 +101,7 @@ function HomePage(props) {
               <th>Record</th>
               <th>Character</th>
               <th>Points</th>
-              <td>Update</td>
+              {account.isAdmin && <td>Update</td>}
               {/* <th>Rank</th> */}
               {/* <th>Last Played</th> */}
             </tr>
@@ -119,20 +119,22 @@ function HomePage(props) {
                     <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                   </td>
                   <td>{player.points}</td>
-                  <td>
-                    <select
-                      id="updatePlayer"
-                      name="updatePlayer"
-                      onChange={(event) => handlePlayerUpdateChange(event, player._id)}
-                    >
-                      <option value="">Update</option>
-                      <option value="name">Name</option>
-                      <option value="points">Points</option>
-                      <option value="winCount">Win count</option>
-                      <option value="loseCount">Lose count</option>
-                      <option value="classValue">Class</option>
-                    </select>
-                  </td>
+                  {account.isAdmin &&
+                    <td>
+                      <select
+                        id="updatePlayer"
+                        name="updatePlayer"
+                        onChange={(event) => handlePlayerUpdateChange(event, player._id)}
+                      >
+                        <option value="">Update</option>
+                        <option value="name">Name</option>
+                        <option value="points">Points</option>
+                        <option value="winCount">Win count</option>
+                        <option value="loseCount">Lose count</option>
+                        <option value="classValue">Class</option>
+                      </select>
+                    </td>
+                  }
                   {/* <td>{player.rank}</td> */}
                   {/* <td>{player.lastPlayed}</td> */}
                 </tr>
