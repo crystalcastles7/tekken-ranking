@@ -177,7 +177,7 @@ function Calendar(props) {
                                     <img alt="" className="char-img" src={"../../tekken-ranking/images/characters/" + match.player_1_character_id + ".png"} />
                                 </div>
 
-                                {match.score1 && match.score2 &&
+                                {match.score1 != null && match.score2 != null &&
                                     <div className='vs-score-container'>
                                         <div className="score-container">
                                             <span className="score">{match.score1}</span>
