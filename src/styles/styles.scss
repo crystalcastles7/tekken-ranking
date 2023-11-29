@@ -2,6 +2,7 @@
 @import './components/header';
 @import './components/backdrop';
 @import './components/calendar';
+@import './components/common';
 @import './components/leaderboard';
 @import './components/notFound';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap');
@@ -51,6 +52,16 @@ body {
 .component-container {
   margin: 150px auto 0;
   text-align: center;
+
+  select {
+    background-color: #1a2a3b;
+    color: #fff;
+    width: 130px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+  }
+
 }
 
 
@@ -93,14 +104,6 @@ body {
       color: #9ab;
       padding: 4px 10px;
       margin-bottom: 0;
-    }
-
-    select {
-      display: block;
-      margin: 0 auto;
-      padding: 6px 10px;
-      width: 200px;
-      border-radius: 8px;
     }
 
     input {

@@ -24,6 +24,38 @@ function HomePage(props) {
     }));
   };
 
+  const updatePlayerProp = async (playerId, newPropName, newPropValue) => {
+
+    const fetchUrl = `${process.env.REACT_APP_API_URL}/update-player`
+    fetch(fetchUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ playerId, newPropName, newPropValue })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert("Player is updated!")
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+
+  const handlePlayerUpdateChange = (event, playerId) => {
+    const { value } = event.target;
+    if (!value) return false
+    let data = prompt("Enter the new value for: " + value)
+    if (!data) return false
+    updatePlayerProp(playerId, value, data)
+  }
+
   const addNewPlayer = async (event) => {
 
     event.preventDefault();
@@ -69,13 +101,14 @@ function HomePage(props) {
               <th>Record</th>
               <th>Character</th>
               <th>Points</th>
+              <td>Update</td>
               {/* <th>Rank</th> */}
               {/* <th>Last Played</th> */}
             </tr>
           </thead>
           <tbody>
 
-            {players.players.sort((a,b) => a.classValue < b.classValue ? 1 : -1).map(((player, index) => {
+            {players.players.sort((a, b) => a.classValue < b.classValue ? 1 : -1).map(((player, index) => {
               return (
                 <tr key={index}>
                   <td>#{index + 1}</td>
@@ -86,6 +119,20 @@ function HomePage(props) {
                     <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                   </td>
                   <td>{player.points}</td>
+                  <td>
+                    <select
+                      id="updatePlayer"
+                      name="updatePlayer"
+                      onChange={(event) => handlePlayerUpdateChange(event, player._id)}
+                    >
+                      <option value="">Update</option>
+                      <option value="name">Name</option>
+                      <option value="points">Points</option>
+                      <option value="winCount">Win count</option>
+                      <option value="loseCount">Lose count</option>
+                      <option value="classValue">Class</option>
+                    </select>
+                  </td>
                   {/* <td>{player.rank}</td> */}
                   {/* <td>{player.lastPlayed}</td> */}
                 </tr>
