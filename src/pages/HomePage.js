@@ -68,6 +68,7 @@ function HomePage(props) {
               <th>Name</th>
               <th>Record</th>
               <th>Character</th>
+              <th>Points</th>
               {/* <th>Rank</th> */}
               {/* <th>Last Played</th> */}
             </tr>
@@ -84,6 +85,7 @@ function HomePage(props) {
                   <td className="main-char-container">
                     <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                   </td>
+                  <td>{player.points} - {player.points}</td>
                   {/* <td>{player.rank}</td> */}
                   {/* <td>{player.lastPlayed}</td> */}
                 </tr>
