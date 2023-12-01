@@ -177,7 +177,9 @@ function Calendar(props) {
     const handleSetUpdateChange = (event, setId) => {
         const { value } = event.target;
         if (!value) return false
-        let data = prompt("Enter the new value for: " + value)
+        let data 
+        if (value!=="youtube_id") data = prompt("Enter the new value for: " + value)
+        else data =  prompt("Enter the youtube video link")
         if (!data) return false
         if (value === "youtube_id") {
             data = getYouTubeVideoId(data)
