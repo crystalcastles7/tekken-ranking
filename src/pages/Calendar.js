@@ -139,6 +139,17 @@ function Calendar(props) {
         return `${day}.${month}.${year}`;
     }
 
+    const getYouTubeVideoId = (url) => {
+        try {
+            var youtubeUrl = new URL(url);
+            var videoId = youtubeUrl.searchParams.get('v');
+            return videoId || null;
+        } catch (error) {
+            console.error("Error parsing URL:", error);
+            return null;
+        }
+    }
+
     const updateSetProp = async (setId, newPropName, newPropValue) => {
 
         const fetchUrl = `${process.env.REACT_APP_API_URL}/update-set`
@@ -168,6 +179,10 @@ function Calendar(props) {
         if (!value) return false
         let data = prompt("Enter the new value for: " + value)
         if (!data) return false
+        if (value === "youtube_id") {
+            data = getYouTubeVideoId(value)
+            if (!data) return false
+        }
         updateSetProp(setId, value, data)
     }
 
@@ -204,6 +219,7 @@ function Calendar(props) {
                                     <option value="">Update</option>
                                     <option value="score1">Score 1</option>
                                     <option value="score2">Score 2</option>
+                                    <option value="youtube_id">Youtube link</option>
                                 </select>
                             }
 
