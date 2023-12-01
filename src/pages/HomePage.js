@@ -95,12 +95,12 @@ function HomePage(props) {
         <table>
           <thead>
             <tr>
-              <th>Rank</th>
+              {/* <th>Rank</th> */}
               <th>Class</th>
               <th>Name</th>
               <th>Record</th>
               <th>Character</th>
-              <th>Points</th>
+              {/* <th>Points</th> */}
               {account.isAdmin && <td>Update</td>}
               {/* <th>Rank</th> */}
               {/* <th>Last Played</th> */}
@@ -111,14 +111,14 @@ function HomePage(props) {
             {players.players.sort((a, b) => a.classValue < b.classValue ? 1 : -1).map(((player, index) => {
               return (
                 <tr key={index}>
-                  <td>#{index + 1}</td>
+                  {/* <td>#{index + 1}</td> */}
                   <td>{getClassText(player.classValue)}</td>
                   <td>{player.name}</td>
                   <td>{player.winCount} - {player.loseCount}</td>
                   <td className="main-char-container">
                     <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                   </td>
-                  <td>{player.points}</td>
+                  {/* <td>{player.points}</td> */}
                   {account.isAdmin &&
                     <td>
                       <select

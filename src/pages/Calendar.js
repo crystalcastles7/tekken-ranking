@@ -139,6 +139,38 @@ function Calendar(props) {
         return `${day}.${month}.${year}`;
     }
 
+    const updateSetProp = async (setId, newPropName, newPropValue) => {
+
+        const fetchUrl = `${process.env.REACT_APP_API_URL}/update-set`
+        fetch(fetchUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ setId, newPropName, newPropValue })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Set is updated!")
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    const handleSetUpdateChange = (event, setId) => {
+        const { value } = event.target;
+        if (!value) return false
+        let data = prompt("Enter the new value for: " + value)
+        if (!data) return false
+        updateSetProp(setId, value, data)
+    }
+
     useEffect(() => {
         generateTimeOptions()
     }, [])
@@ -162,6 +194,19 @@ function Calendar(props) {
                         (player_1_object.name.toLowerCase().includes(inputValue) || player_2_object.name.toLowerCase().includes(inputValue)) &&
 
                         <div className='match-group-container'>
+
+                            {account.isAdmin &&
+                                <select
+                                    id="updateSet"
+                                    name="updateSet"
+                                    onChange={(event) => handleSetUpdateChange(event, match._id)}
+                                >
+                                    <option value="">Update</option>
+                                    <option value="score1">Score 1</option>
+                                    <option value="score2">Score 2</option>
+                                </select>
+                            }
+
                             <div className="match">
                                 <div className="date-container">
                                     <div className="date">{formatUnixTimestamp(match.date)}</div>
