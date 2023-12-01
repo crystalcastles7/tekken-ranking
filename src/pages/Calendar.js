@@ -180,7 +180,7 @@ function Calendar(props) {
         let data = prompt("Enter the new value for: " + value)
         if (!data) return false
         if (value === "youtube_id") {
-            data = getYouTubeVideoId(value)
+            data = getYouTubeVideoId(data)
             if (!data) return false
         }
         updateSetProp(setId, value, data)
