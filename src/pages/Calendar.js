@@ -23,6 +23,272 @@ function Calendar(props) {
     const [isFormActive, setIsFormActive] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [timeOptions, setTimeOptions] = useState([]);
+    const [allAvailableBets, setAllAvailableBets] = useState([]);
+
+
+    const determineBetOdd = (probability) => {
+
+        /*
+        if (probability > 96) probability = 96
+        else if (probability < 4) probability = 4
+        */
+
+        probability /= 100
+        // const houseMargin = -0.09;
+        const houseMargin = 0
+        let odds = 1 / probability + houseMargin;
+
+        /* tmp start */
+        let diff = odds - 1
+        let margin = diff * 0.09
+        odds -= margin
+        /* tmp end */
+
+        const roundedOdds = Math.round(odds * 100) / 100;
+
+        if (roundedOdds < 1.01) return 1.01
+        return roundedOdds;
+    };
+
+    const getCat2Odd = (initialOdd, neededHandicap) => {
+
+        let difficulty
+        if (neededHandicap === 7) difficulty = 2.15
+        else if (neededHandicap === 6) difficulty = 1.65
+        else if (neededHandicap === 5) difficulty = 1.3
+
+        return initialOdd / difficulty
+
+    }
+
+    const getCat5Odd = (powerDifference, neededMatchCount) => {
+
+        let difficulty
+        if (neededMatchCount === 9) difficulty = 0.38
+        else if (neededMatchCount === 8) difficulty = 0.60
+        else if (neededMatchCount === 7) difficulty = 0.72
+        else if (neededMatchCount === 6) difficulty = 0.79
+        else if (neededMatchCount === 5) difficulty = 1
+
+        if (powerDifference < 5) {
+            return 82 * difficulty
+        } else if (powerDifference < 10) {
+            return 79 * difficulty
+        } else if (powerDifference < 15) {
+            return 76 * difficulty
+        } else if (powerDifference < 20) {
+            return 73 * difficulty
+        } else if (powerDifference < 25) {
+            return 70 * difficulty
+        } else if (powerDifference < 30) {
+            return 67 * difficulty
+        } else if (powerDifference < 35) {
+            return 64 * difficulty
+        } else if (powerDifference < 40) {
+            return 61 * difficulty
+        } else if (powerDifference < 45) {
+            return 59 * difficulty
+        } else if (powerDifference < 50) {
+            return 56 * difficulty
+        } else if (powerDifference < 60) {
+            return 53 * difficulty
+        } else if (powerDifference < 70) {
+            return 50 * difficulty
+        } else if (powerDifference < 100) {
+            return 35 * difficulty
+        }
+    }
+
+    const getBetOdd = (betCategoryId, player_1_win_probability, player_2_win_probability, betOptionIndex) => {
+        if (!player_1_win_probability || !player_2_win_probability) return "-"
+        // different odds for different categories
+        if (betCategoryId === "1") { // BET : WHO WINS
+            if (betOptionIndex === 0) { // first player wins
+                return determineBetOdd(player_1_win_probability).toFixed(2)
+            } else if (betOptionIndex === 1) { // set bitmez
+                return "10.00"
+            } else if (betOptionIndex === 2) { // second player wins
+                return determineBetOdd(player_2_win_probability).toFixed(2)
+            }
+        }
+
+        else if (["2", "9", "10"].includes(betCategoryId)) { // BET : Ilk oyuncu X farkla kazanir
+
+            let chosenHandicap
+            if (betCategoryId === "2") chosenHandicap = 5
+            else if (betCategoryId === "9") chosenHandicap = 6
+            else if (betCategoryId === "10") chosenHandicap = 7
+
+            const cat2Odd = getCat2Odd(player_1_win_probability, chosenHandicap)
+            player_1_win_probability = cat2Odd
+
+            if (betOptionIndex === 0) { // agree
+                return determineBetOdd(player_1_win_probability).toFixed(2)
+            } else if (betOptionIndex === 1) { // not agree
+                return determineBetOdd(100 - player_1_win_probability).toFixed(2)
+            }
+        }
+
+        else if (["3", "11", "12"].includes(betCategoryId)) { // BET : Ikinci oyuncu X farkla kazanir
+
+            let chosenHandicap
+            if (betCategoryId === "3") chosenHandicap = 5
+            else if (betCategoryId === "11") chosenHandicap = 6
+            else if (betCategoryId === "12") chosenHandicap = 7
+
+            const cat2Odd = getCat2Odd(player_2_win_probability, chosenHandicap)
+            player_2_win_probability = cat2Odd
+
+            if (betOptionIndex === 0) { // agree
+                return determineBetOdd(player_2_win_probability).toFixed(2)
+            } else if (betOptionIndex === 1) { // not agree
+                return determineBetOdd(100 - player_2_win_probability).toFixed(2)
+            }
+        }
+
+        else if (["4", "5", "6", "7", "8"].includes(betCategoryId)) { // BET : Iki oyuncu da min. X mac alir
+            let probabilityDifference = Math.abs(player_1_win_probability - player_2_win_probability);
+            let chosenDifference
+            if (betCategoryId === "4") chosenDifference = 5
+            else if (betCategoryId === "5") chosenDifference = 6
+            else if (betCategoryId === "6") chosenDifference = 7
+            else if (betCategoryId === "7") chosenDifference = 8
+            else if (betCategoryId === "8") chosenDifference = 9
+            const cat5Odd = getCat5Odd(probabilityDifference, chosenDifference)
+            if (betOptionIndex === 0) { // agree
+                return determineBetOdd(cat5Odd).toFixed(2)
+            } else if (betOptionIndex === 1) { // not agree
+                return determineBetOdd(100 - cat5Odd).toFixed(2)
+            }
+        }
+
+    }
+
+    useEffect(() => {
+        generateTimeOptions()
+
+        /* bet related */
+
+        let tmpBets = [
+            {
+                betCategoryId: "1",
+                betText: "Kim kazanir?",
+                betOptions: ["Ilk oyuncu", "Set bitmez", "Ikinci oyuncu"]
+            },
+            {
+                betCategoryId: "2",
+                betText: "Ilk oyuncu, en az 5 fark ile kazanir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "9",
+                betText: "Ilk oyuncu, en az 6 fark ile kazanir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "10",
+                betText: "Ilk oyuncu, en az 7 fark ile kazanir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "3",
+                betText: "Ikinci oyuncu, en az 5 fark ile kazanir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "11",
+                betText: "Ikinci oyuncu, en az 6 fark ile kazanir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "12",
+                betText: "Ikinci oyuncu, en az 7 fark ile kazanir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "4",
+                betText: "Iki oyuncu da en az 5 mac alir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "5",
+                betText: "Iki oyuncu da en az 6 mac alir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "6",
+                betText: "Iki oyuncu da en az 7 mac alir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "7",
+                betText: "Iki oyuncu da en az 8 mac alir",
+                betOptions: ["Evet", "Hayir"]
+            },
+            {
+                betCategoryId: "8",
+                betText: "Iki oyuncu da en az 9 mac alir",
+                betOptions: ["Evet", "Hayir"]
+            }
+        ]
+
+        setAllAvailableBets(tmpBets)
+
+    }, [])
+
+
+    const addNewBet = async (currentBet) => {
+
+        if (!account.account) {
+            alert("You must be logged in to use this feature.")
+            return false
+        }
+
+        const fetchUrl = `${process.env.REACT_APP_API_URL}/add-bet`
+        fetch(fetchUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ betObject: currentBet, accountId: account.account._id })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Bet is added!")
+                // console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+
+    const setCurrentBetMain = (matchId, betCategoryId, betOptionIndex, pickedOdd) => {
+        const currentBetObject = {
+            accountId: account._id,
+            matchId,
+            betCategoryId,
+            betOptionIndex,
+            amount: 100,
+            status: "waiting",
+            pickedOdd
+        }
+
+        let answer = window.confirm("Confirm bet? ")
+        if (answer) {
+            // Saving the bet...
+            addNewBet(currentBetObject)
+
+        } else {
+
+        }
+
+    }
 
     const handleInputChange = (event) => {
 
@@ -94,16 +360,17 @@ function Calendar(props) {
     }
 
     const toggleActiveClass = (elementId) => {
+
         const element = document.getElementById(elementId);
 
         if (element) {
             // Check if the element has the class
-            if (element.classList.contains('youtube-container--active')) {
+            if (element.classList.contains('active')) {
                 // If it has the class, remove it
-                element.classList.remove('youtube-container--active');
+                element.classList.remove('active');
             } else {
                 // If it doesn't have the class, add it
-                element.classList.add('youtube-container--active');
+                element.classList.add('active');
             }
         }
     }
@@ -115,6 +382,10 @@ function Calendar(props) {
 
     const loadGame = (index) => {
         toggleActiveClass("match-id--" + index);
+    }
+
+    const loadBets = (index) => {
+        toggleActiveClass("bet-match-id--" + index);
     }
 
     const generateTimeOptions = () => {
@@ -177,9 +448,9 @@ function Calendar(props) {
     const handleSetUpdateChange = (event, setId) => {
         const { value } = event.target;
         if (!value) return false
-        let data 
-        if (value!=="youtube_id") data = prompt("Enter the new value for: " + value)
-        else data =  prompt("Enter the youtube video link")
+        let data
+        if (value !== "youtube_id") data = prompt("Enter the new value for: " + value)
+        else data = prompt("Enter the youtube video link")
         if (!data) return false
         if (value === "youtube_id") {
             data = getYouTubeVideoId(data)
@@ -187,10 +458,6 @@ function Calendar(props) {
         }
         updateSetProp(setId, value, data)
     }
-
-    useEffect(() => {
-        generateTimeOptions()
-    }, [])
 
     return (
 
@@ -212,7 +479,7 @@ function Calendar(props) {
 
                         <div className='match-group-container'>
 
-                            {account.isAdmin &&
+                            {account.account && account.account.isAdmin &&
                                 <select
                                     id="updateSet"
                                     name="updateSet"
@@ -254,11 +521,13 @@ function Calendar(props) {
                                 }
 
                                 {!match.score1 && !match.score2 &&
-                                    <span className="vs">vs</span>
+                                    <span className="vs" >
+                                        <span onClick={() => loadBets(index)}>vs</span>
+                                    </span>
                                 }
 
                                 <div className="player-container p2">
-                                    <img className="char-img" src={"../../tekken-ranking/images/characters/" + match.player_2_character_id + ".png"} />
+                                    <img alt="char img" className="char-img" src={"../../tekken-ranking/images/characters/" + match.player_2_character_id + ".png"} />
                                     {match.score1 && <span className={`player-name ${match.score1 > match.score2 ? 'loser' : 'winner'}`}>{player_2_object.name}</span>}
                                     {!match.score1 && <span className='player-name'>{player_2_object.name}</span>}
                                     {/* <img src="" className="flag"></img> */}
@@ -275,13 +544,46 @@ function Calendar(props) {
                                 ></iframe>
 
                             </div>
+                            <div className='bets-container' id={"bet-match-id--" + index}>
+
+                                {allAvailableBets.map((bet, index) => {
+                                    return (
+                                        <div className='single-bet-container'>
+                                            <div className='single-bet-title-container'>{bet.betText}</div>
+                                            <div className='single-bet-options-container'>
+
+                                                {bet.betOptions.map((betOption, betOptionIndex) => {
+                                                    return (<div className='single-bet-option-container' onClick={() => {
+                                                        setCurrentBetMain(
+                                                            match._id,
+                                                            bet.betCategoryId,
+                                                            betOptionIndex,
+                                                            parseFloat(getBetOdd(bet.betCategoryId, match.player_1_win_probability, match.player_2_win_probability, betOptionIndex)
+                                                        )
+                                                        )
+                                                    }}>
+                                                        <div className='single-bet-option-text'>{betOption}</div>
+                                                        <div className='single-bet-option-value'>{
+                                                            getBetOdd(bet.betCategoryId, match.player_1_win_probability, match.player_2_win_probability, betOptionIndex)
+                                                        }</div>
+                                                    </div>
+                                                    )
+                                                })}
+
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                                }
+
+                            </div>
                         </div>
                     )
                 })}
             </div>
 
 
-            {account.isAdmin &&
+            {account.account && account.account.isAdmin &&
                 <div className='new-set-form-container'>
 
                     <div className='btn-container'>

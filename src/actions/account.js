@@ -1,4 +1,4 @@
-export const setAdmin = (isAdmin) => ({
-    type: "SET_ADMIN",
-    payload: isAdmin,
-  });
+export const setAccount = (account) => ({
+  type: "SET_ACCOUNT",
+  payload: account,
+});

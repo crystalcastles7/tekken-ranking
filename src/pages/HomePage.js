@@ -101,7 +101,7 @@ function HomePage(props) {
               <th>Record</th>
               <th>Character</th>
               {/* <th>Points</th> */}
-              {account.isAdmin && <td>Update</td>}
+              {account.account && account.account.isAdmin && <td>Update</td>}
               {/* <th>Rank</th> */}
               {/* <th>Last Played</th> */}
             </tr>
@@ -119,7 +119,7 @@ function HomePage(props) {
                     <img className="char-img" src={"../../tekken-ranking/images/characters/" + player.mainCharacterId + ".png"} />
                   </td>
                   {/* <td>{player.points}</td> */}
-                  {account.isAdmin &&
+                  {account.account && account.account.isAdmin &&
                     <td>
                       <select
                         id="updatePlayer"
@@ -146,7 +146,7 @@ function HomePage(props) {
         </table>
       }
 
-      {account.isAdmin &&
+      {account.account && account.account.isAdmin &&
         <div className='new-player-form-container'>
 
           <div className='btn-container'>

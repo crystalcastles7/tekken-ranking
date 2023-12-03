@@ -72,6 +72,10 @@
 
       .vs {
         width: 160px;
+        span {
+          cursor: pointer;
+          text-decoration: underline;
+        }
         // margin-bottom: -17px;
       }
 
@@ -90,6 +94,10 @@
 
           span {
             cursor: pointer;
+          }
+
+          .span-bet {
+            color: #fbc302;
           }
         }
       }
@@ -165,8 +173,71 @@
 
     }
 
-    .youtube-container--active {
-      height: 320px;
+    .bets-container {
+      width: 80%;
+      margin: 0 auto;
+      height: 0;
+      overflow: hidden;
+      // transition: .25s ease-in-out;
+      border-radius: 10px;
+
+
+      .single-bet-container {
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.28);
+        background-color: #3b3b3b;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 7px;
+
+        .single-bet-title-container {
+          background-color: #0e6ac3;
+          text-align: left;
+          font-size: 17px;
+          padding: 6px 12px;
+        }
+
+        .single-bet-options-container {
+          background-color: #5d5d5c;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .single-bet-option-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            justify-content: space-between;
+            flex-direction: row;
+            column-gap: 10px;
+            padding: 8px 12px;
+            font-size: 15px;
+            background-color: #505050;
+            border: 1px solid #454545;
+            cursor: pointer;
+
+            .single-bet-option-value {
+              color: #fbc302;
+            }
+
+          }
+
+          .single-bet-option-container:hover {
+            background-color: #626262;
+          }
+        }
+
+      }
+
+    }
+
+    .active {
+      height: 420px;
+      //height: unset;
+      padding: 30px 0 40px;
+    }
+
+    .active.bets-container {
+      height: unset;
     }
 
 
@@ -240,7 +311,7 @@
   }
 
   .active {
-    transition: .25s ease-in-out;
+    // transition: .25s ease-in-out;
     height: 950px;
   }
 

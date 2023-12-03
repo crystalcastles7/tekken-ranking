@@ -1,15 +1,14 @@
 const initialState = {
-    isAdmin: false,
+  
 };
 
 const accountReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_ADMIN":
+        case "SET_ACCOUNT":
             return {
                 ...state,
-                isAdmin: action.payload,
+                account: action.payload
             };
-
         default:
             return state;
     }

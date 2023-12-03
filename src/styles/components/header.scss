@@ -56,6 +56,20 @@ header {
       }
     }
   }
+
+  .bet-points-container {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    color: #9ab;
+    font-size: 13px;
+    cursor: default;
+    span {
+      font-size: 13px;
+      color: #fff;
+      margin-right: 10px;
+    }
+  }
 }
 
 .page-container--movie-page header {

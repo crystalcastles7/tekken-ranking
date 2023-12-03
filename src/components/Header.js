@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { setPlayersList } from '../actions/players';
 import { setMatchesList } from '../actions/matches';
-import { setAdmin } from '../actions/account';
+import { setAccount } from '../actions/account';
 import { setCharactersList } from '../actions/characters';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function Header() {
   useEffect(() => {
     let authToken = localStorage.getItem("authToken")
     if (authToken) {
-      const fetchUrl = `${process.env.REACT_APP_API_URL}/is-admin-token`
+      const fetchUrl = `${process.env.REACT_APP_API_URL}/is-account-token`
       fetch(fetchUrl, {
         method: 'POST',
         headers: {
@@ -24,8 +24,8 @@ function Header() {
       })
         .then(response => response.json())
         .then(data => {
-          if (data.exists === true) {
-            dispatch(setAdmin(true));
+          if (data.account) {
+            dispatch(setAccount(data.account));
           } else {
             // alert("Logged out because of outdated auth token.")
           }
@@ -36,6 +36,7 @@ function Header() {
     }
   }, [])
 
+  
   const toggleLogin = () => {
 
     if (account.isAdmin) {
@@ -49,7 +50,7 @@ function Header() {
 
     if (account_name.trim() === "" || account_pass.trim() === "") return false
 
-    const fetchUrl = `${process.env.REACT_APP_API_URL}/is-admin`
+    const fetchUrl = `${process.env.REACT_APP_API_URL}/is-account`
     fetch(fetchUrl, {
       method: 'POST',
       headers: {
@@ -60,7 +61,7 @@ function Header() {
       .then(response => response.json())
       .then(data => {
         if (data.exists === true) {
-          dispatch(setAdmin(true));
+          dispatch(setAccount(data.account));
           localStorage.setItem("authToken", data.authToken)
           alert("Success! ")
         } else {
@@ -339,13 +340,16 @@ function Header() {
         </li>
         <li>
           <a onClick={toggleLogin} style={{ cursor: "pointer" }}>
-            {account.isAdmin === false && <span>LOGIN</span>}
-            {account.isAdmin === true && <span>LOGOUT</span>}
+            {account.account && account.account.isAdmin === true && <span>LOGOUT</span>}
+            {(!account || !account.account || (account.account && account.account.isAdmin !== true)) && <span>LOGIN</span>}
           </a>
         </li>
 
 
       </ul>
+      {account.account && account.account.betPoints &&
+        <div className='bet-points-container'>Bet points: <span>{account.account.betPoints}</span></div>
+      }
     </header>
   );
 }
